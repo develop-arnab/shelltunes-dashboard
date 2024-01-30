@@ -52,7 +52,7 @@ const Dashboard = () => {
 
     const accessToken = localStorage.getItem('accessToken') // Replace with your actual storage key
 
-    let fullUrl = url
+    let fullUrl = url + "/create/"
     if (option === 'Memes') {
       fullUrl += 'memes'
     } else if (option === 'Potrait' || option === 'Banner') {
