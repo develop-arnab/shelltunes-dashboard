@@ -48,7 +48,7 @@ const Dashboard = () => {
     getSavedProject()
   }, [])
   const handleClick = option => {
-    const url = 'http://localhost:8080/create/'
+    const url = process.env.NEXT_PUBLIC_BASE_URL
 
     const accessToken = localStorage.getItem('accessToken') // Replace with your actual storage key
 
