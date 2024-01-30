@@ -26,7 +26,7 @@ import SalesByCountries from 'src/views/dashboard/SalesByCountries'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 const Dashboard = () => {
-  const BASE_URL = 'http://localhost:8080' // Replace with your actual base URL
+  const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL 
   const [savedProjects, setSavedProjects] = useState([])
   const getSavedProject = async () => {
     const headers = {
