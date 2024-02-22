@@ -45,7 +45,7 @@ const Dashboard = () => {
     }
   }
   useEffect(() => {
-    getSavedProject()
+    // getSavedProject()
   }, [])
   const handleClick = option => {
     const url = process.env.NEXT_PUBLIC_BASE_URL
@@ -118,7 +118,7 @@ const Dashboard = () => {
         <Grid item xs={12} sx={{ paddingBottom: 4 }}>
           <Typography variant='h5'>Saved Projects</Typography>
         </Grid>
-        {savedProjects?.map(project => {
+        {/* {savedProjects?.map(project => {
           return (
             <Grid item xs={12} sm={6} md={4}>
               <CardUser
@@ -130,7 +130,7 @@ const Dashboard = () => {
               />
             </Grid>
           )
-        })}
+        })} */}
       </Grid>
     </ApexChartWrapper>
   )
