@@ -52,11 +52,13 @@ const Dashboard = () => {
 
     const accessToken = localStorage.getItem('accessToken') // Replace with your actual storage key
 
-    let fullUrl = url + "/create/"
+    let fullUrl = url + "/studio/"
     if (option === 'Memes') {
       fullUrl += 'memes'
-    } else if (option === 'Potrait' || option === 'Banner') {
-      fullUrl += `?token=${encodeURIComponent(accessToken)}`
+    } else if (option === 'Presentation') {
+      fullUrl += `?token=${encodeURIComponent(accessToken)}&search=business`
+    } else if (option === 'advertisement') {
+      fullUrl += `?token=${encodeURIComponent(accessToken)}&search=advertise`
     } else {
       fullUrl += '?id=' + option
       fullUrl += `&token=${encodeURIComponent(accessToken)}`
@@ -86,18 +88,18 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={4}>
           <CardUser
             cta={'Create'}
-            title={'Banner'}
+            title={'Social Media'}
             description={'16:9'}
-            handleClick={() => handleClick('Banner')}
+            handleClick={() => handleClick('advertisement')}
             image={'/images/templates/landscape.jpg'}
           />
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <CardUser
             cta={'Create'}
-            title={'Potrait'}
+            title={'Presentation'}
             description={'16:9'}
-            handleClick={() => handleClick('Potrait')}
+            handleClick={() => handleClick('Presentation')}
             image={'/images/templates/potrait.avif'}
           />
         </Grid>
