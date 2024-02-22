@@ -36,7 +36,7 @@ const Dashboard = () => {
 
     try {
       const response = await axios.get(BASE_URL + '/api/retrieveCanvas', { headers })
-      const data = response.data
+      const data = response?.data
       console.log('DATA ', data)
       setSavedProjects(data)
       console.log(data)
@@ -118,7 +118,7 @@ const Dashboard = () => {
         <Grid item xs={12} sx={{ paddingBottom: 4 }}>
           <Typography variant='h5'>Saved Projects</Typography>
         </Grid>
-        {savedProjects.map(project => {
+        {savedProjects?.map(project => {
           return (
             <Grid item xs={12} sm={6} md={4}>
               <CardUser
