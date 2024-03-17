@@ -1,12 +1,18 @@
+//@ts-ignore
+import 'swiper/css'
+import 'swiper/css/bundle'
+import 'swiper/css/navigation'
+import 'swiper/css/autoplay'
+
 // ** Next Imports
 import Head from 'next/head'
 import { Router } from 'next/router'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 
+
 // ** Loader Import
 import NProgress from 'nprogress'
-
 // ** Emotion Imports
 import { CacheProvider } from '@emotion/react'
 import type { EmotionCache } from '@emotion/cache'
@@ -59,25 +65,28 @@ const App = (props: ExtendedAppProps) => {
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
 
   return (
+    // <>
     <CacheProvider value={emotionCache}>
-      <Head>
+      {/* <Head>
         <title>{`${themeConfig.templateName} Control`}</title>
-        <meta
-          name='description'
-          content={`${themeConfig.templateName} – Control.`}
-        />
+        <meta name='description' content={`${themeConfig.templateName} – Control.`} />
         <meta name='keywords' content='Control' />
         <meta name='viewport' content='initial-scale=1, width=device-width' />
-      </Head>
+      </Head> */}
+      {/* 
+       */}
 
       <SettingsProvider>
+
         <SettingsConsumer>
           {({ settings }) => {
             return <ThemeComponent settings={settings}>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
           }}
         </SettingsConsumer>
       </SettingsProvider>
+      {/* <Component {...pageProps} /> */}
     </CacheProvider>
+    // </>
   )
 }
 

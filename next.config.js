@@ -7,12 +7,20 @@ module.exports = {
     esmExternals: false,
     jsconfigPaths: true // enables it for both jsconfig.json and tsconfig.json
   },
+  rewrites: async () => {
+    return [
+      {
+        source: '/',
+        destination: '/index.html'
+      }
+    ]
+  },
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
     // your project has type errors.
     // !! WARN !!
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true
   },
   webpack: config => {
     config.resolve.alias = {

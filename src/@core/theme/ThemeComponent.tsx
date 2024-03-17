@@ -21,7 +21,8 @@ import themeOptions from './ThemeOptions'
 
 // ** Global Styles
 import GlobalStyling from './globalStyles'
-
+import { GlobalLandingStyles } from 'src/components/GlobalLandingStyles'
+import { ColorModeScript } from 'nextjs-color-mode'
 interface Props {
   settings: Settings
   children: ReactNode
@@ -50,6 +51,8 @@ const ThemeComponent = (props: Props) => {
 
   return (
     <ThemeProvider theme={theme}>
+      <ColorModeScript />
+      <GlobalLandingStyles />
       <CssBaseline />
       <GlobalStyles styles={() => GlobalStyling(theme) as any} />
       {children}

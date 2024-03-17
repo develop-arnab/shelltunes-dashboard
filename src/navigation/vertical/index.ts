@@ -16,9 +16,19 @@ import { VerticalNavItemsType } from 'src/@core/layouts/types'
 const navigation = (): VerticalNavItemsType => {
   return [
     {
-      title: 'Dashboard',
+      title: 'Home',
       icon: HomeOutline,
       path: '/'
+    },
+    {
+      title: 'Dashboard',
+      icon: HomeOutline,
+      path: '/dashboard'
+    },
+    {
+      title: 'Animations',
+      icon: AccountCogOutline,
+      path: '/search-animations'
     },
     {
       title: 'Account Settings',
@@ -26,7 +36,7 @@ const navigation = (): VerticalNavItemsType => {
       path: '/account-settings'
     },
     {
-      sectionTitle: 'Pages'
+      sectionTitle: 'New User'
     },
     {
       title: 'Login',
@@ -39,7 +49,7 @@ const navigation = (): VerticalNavItemsType => {
       icon: AccountPlusOutline,
       path: '/pages/register',
       openInNewTab: true
-    },
+    }
     // {
     //   title: 'Error',
     //   icon: AlertCircleOutline,
