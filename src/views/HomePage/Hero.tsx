@@ -7,7 +7,7 @@ import Container from 'src/components/Container';
 import HeroIllustration from 'src/components/HeroIllustation';
 import OverTitle from 'src/components/OverTitle';
 import Lottie from 'react-lottie'
-import * as animationData from '../../../public/Line_Connect_Divider_Slanted_Angle_Rotate_Color_Reveal_Stripe_Slide_Text_Animation.json'
+// import * as animationData from '../../../public/Line_Connect_Divider_Slanted_Angle_Rotate_Color_Reveal_Stripe_Slide_Text_Animation.json'
 // import { useNewsletterModalContext } from 'src/contexts/newsletter-modal.context';
 import { media } from '../../utils/media'
 import { useRouter } from 'next/router'
@@ -61,15 +61,15 @@ export default function Hero() {
           >
             Start Designing <span>&rarr;</span>
           </Button>
-          <NextLink href='#whitepaper' passHref>
-            <Button
+          <NextLink href='' passHref>
+            <OutlinedButton
               transparent
               onClick={() => {
                 router.push('/search-animations')
               }}
             >
               Browse Templates <span>&rarr;</span>
-            </Button>
+            </OutlinedButton>
           </NextLink>
         </CustomButtonGroup>
       </Contents>
@@ -86,6 +86,11 @@ const HeroWrapper = styled(Container)`
     flex-direction: column;
     align-items: center;
   }
+`;
+
+const OutlinedButton = styled(Button)`
+  border: 1px solid rgb(var(--textSecondary));
+  color: rgb(var(--textSecondary));
 `;
 
 const Contents = styled.div`
