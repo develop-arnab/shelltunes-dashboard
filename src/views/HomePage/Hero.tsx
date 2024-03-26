@@ -56,7 +56,7 @@ export default function Hero() {
         <CustomButtonGroup>
           <Button
             onClick={() => {
-              window.open('https://create.shelltunes.com/studio')
+              window.open(`${process.env.NEXT_PUBLIC_BASE_URL}/studio`)
             }}
           >
             Start Designing <span>&rarr;</span>

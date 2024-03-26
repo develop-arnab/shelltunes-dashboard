@@ -34,12 +34,12 @@ const Card = ({ img, title, star, searchQuery }) => {
           <section className='card-reviews'>
             <div>
               {star} {star} {star} {star}
-              {/* <button onClick={() => {window.open(`https://create.shelltunes.com/studio?animPath=${img?.split('?')[0]}`)}} className="total-reviews">Add to canvas</button> */}
+              {/* <button onClick={() => {window.open(`${process.env.NEXT_PUBLIC_BASE_URL}/studio?animPath=${img?.split('?')[0]}`)}} className="total-reviews">Add to canvas</button> */}
             </div>
             <NotePlusOutline
               size={40}
               onClick={() => {
-                window.open(`https://create.shelltunes.com/studio?animPath=${img?.split('?')[0]}`)
+                window.open(`${process.env.NEXT_PUBLIC_BASE_URL}/studio?animPath=${img?.split('?')[0]}`)
               }}
             />
           </section>
