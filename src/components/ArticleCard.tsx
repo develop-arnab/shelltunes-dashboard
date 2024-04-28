@@ -28,6 +28,7 @@ export default function ArticleCard({ title, slug, imageUrl, description }: Arti
               url={imageUrl}
               controls={true}
               autoPlay={true}
+              muted={true}
               // light is usefull incase of dark mode
               light={false}
               // picture in picture

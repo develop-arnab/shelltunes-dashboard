@@ -9,7 +9,7 @@ export const postarray = [
         'Craft beautiful, personalized wedding invitations with animated and dynamic designs that set the tone for your special day.',
       date: '2021-07-31',
       tags: 'wedding,invitations,design,templates',
-      imageUrl: '/featured/cards/Invitation.mp4'
+      imageUrl: '/featured/cards/wedding_templates.mp4'
     }
   },
   {
@@ -45,7 +45,7 @@ export const postarray = [
       description: 'Bring your texts to life with unique animations, perfect for making your messages memorable.',
       date: '2021-07-31',
       tags: 'text,animations,customizable,content',
-      imageUrl: '/featured/cards/food.mp4'
+      imageUrl: '/featured/cards/dynamic_text.mp4'
     }
   },
   {

@@ -14,21 +14,30 @@ const EmblaCarousel = props => {
   return (
     <section className='embla'>
       <div className='embla__viewport' ref={emblaRef}>
-        <div className='embla__container'>
+        {/* <div className='embla__container'>
           {slides.map(index => (
             <div className='embla__slide' key={index}>
               <div className='embla__slide__number'>
                 <video width='750' height='500' autoPlay={true} controls>
                   <source src={`/featured/c${index + 1}.mp4`} type='video/mp4' />
                 </video>
-                {/* {index + 1} */}
               </div>
             </div>
           ))}
+        </div> */}
+        <div className='embla__container'>
+          <div className='embla__slide'>
+            <div className='embla__slide__number'>
+              <video width='750' height='500' autoPlay={true} controls>
+                <source src={`/featured/shelltunes_promo.mp4`} type='video/mp4' />
+              </video>
+              {/* {index + 1} */}
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className='embla__controls'>
+      {/* <div className='embla__controls'>
         <div className='embla__buttons'>
           <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
@@ -43,7 +52,7 @@ const EmblaCarousel = props => {
             />
           ))}
         </div>
-      </div>
+      </div> */}
     </section>
   )
 }
