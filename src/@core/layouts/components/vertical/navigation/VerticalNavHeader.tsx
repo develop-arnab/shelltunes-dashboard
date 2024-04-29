@@ -62,7 +62,7 @@ const VerticalNavHeader = (props: Props) => {
       ) : (
         <Link href='/' passHref>
           <StyledLink>
-             <img width={38} height={38} alt='paypal' src='/images/brush.png'/>
+            <img width={38} height={38} alt='paypal' src='/images/shelltunes-android-chrome-192x192.png' />
             <HeaderTitle variant='h6' sx={{ ml: 3 }}>
               {themeConfig.templateName}
             </HeaderTitle>

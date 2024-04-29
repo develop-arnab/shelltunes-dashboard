@@ -112,7 +112,7 @@ const LoginPage = () => {
       <Card sx={{ zIndex: 1 }}>
         <CardContent sx={{ padding: theme => `${theme.spacing(12, 9, 7)} !important` }}>
           <Box sx={{ mb: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img width={38} height={38} alt='paypal' src='/images/brush.png' />
+            <img width={38} height={38} alt='paypal' src='/images/shelltunes-android-chrome-192x192.png' />
             <Typography
               variant='h6'
               sx={{
