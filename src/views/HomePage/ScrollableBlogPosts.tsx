@@ -37,7 +37,7 @@ export default function ScrollableBlogPosts({ posts }: ScrollableBlogPostsProps)
       </Container>
 
       <SwiperContainer ref={ref}>
-        {hasMounted && (
+        {/* {hasMounted && ( */}
           <Swiper modules={[A11y]} slidesPerView={noOfItems} spaceBetween={10} loop>
             {posts.map((singlePost, idx) => (
               <SwiperSlide key={singlePost.meta.title}>
@@ -46,11 +46,12 @@ export default function ScrollableBlogPosts({ posts }: ScrollableBlogPostsProps)
                   description={singlePost.meta.description}
                   imageUrl={singlePost.meta.imageUrl}
                   slug={singlePost.slug}
+                  thumbnailUrl={singlePost.meta.thumbnailUrl}
                 />
               </SwiperSlide>
             ))}
           </Swiper>
-        )}
+        {/* )} */}
       </SwiperContainer>
     </Section>
   );

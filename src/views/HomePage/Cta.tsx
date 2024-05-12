@@ -15,12 +15,21 @@ export default function Cta() {
       <Container>
         <Stack>
           <OverTitle>Why Choose Shelltunes?</OverTitle>
-          <SectionTitle>Bring Your Designs to Life with Dynamic Animated Templates</SectionTitle>
+          <SectionTitle>The AI-Powered Online Graphic Editor</SectionTitle>
           <Description>
-            Choose Shelltunes for an unparalleled design experience. Our platform combines ease of use with powerful,
-            dynamic design capabilities, setting your content apart from the static noise. Whether you're a marketer,
-            small business owner, or a creative soul, Shelltunes is designed to boost your productivity and unleash your
-            creative potential.
+            In the fast-paced digital world, captivating visuals are the key to success. Introducing Shelltunes, the
+            revolutionary online design software that harnesses the power of AI to create stunning animated graphics,
+            custom text animations, and motion graphic templates tailored to your needs. Say goodbye to static, lifeless
+            designs, and hello to dynamic, eye-catching content that leaves a lasting impression.
+            <br></br> <br></br>
+            Whether you're a marketer, small business owner, event planner, or a creative soul, Shelltunes is your go-to
+            platform for bringing your designs to life with dynamic animated templates and AI-powered tools. Join the
+            thousands of satisfied users who have already discovered the power of Shelltunes and elevate your content to
+            new heights. <br></br> <br></br>
+            Explore our extensive library of templates, tools, and resources today! Create your own animation, design
+            your dream wedding invitation, craft a viral meme, or develop an engaging presentation that leaves a lasting
+            impression. With Shelltunes, the possibilities are endless. Experience the future of design and let your
+            creativity soar!
           </Description>
           <ButtonGroup>
             <NextLink href='#early-access' passHref>
@@ -47,7 +56,8 @@ export default function Cta() {
 const Description = styled.div`
   font-size: 1.8rem;
   color: rgba(var(--textSecondary), 0.8);
-`;
+  text-align: left;
+`
 
 const Stack = styled.div`
   display: flex;

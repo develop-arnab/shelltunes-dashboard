@@ -29,7 +29,7 @@ const EmblaCarousel = props => {
           <div className='embla__slide'>
             <div className='embla__slide__number'>
               <video width='750' height='500' autoPlay={true} controls>
-                <source src={`/featured/shelltunes_promo.mp4`} type='video/mp4' />
+                <source src={`/featured/shelltunes_promo_op.mp4`} type='video/mp4' />
               </video>
               {/* {index + 1} */}
             </div>

@@ -48,10 +48,11 @@ export default function Hero() {
       </ImageContainer>
       <Contents>
         {/* <CustomOverTitle>the coolest, saas product you have ever seen</CustomOverTitle> */}
-        <Heading>Bring your designs to life</Heading>
+        <Heading>Bring your design ideas to life</Heading>
         <Description>
-          Create stunning, animated designs with ease. From social media posts to advertisements and digital designs,
-          Shelltunes is your go-to tool for making your creative vision come to life.
+          Our cutting-edge online design software combines the power of AI technology with an extensive library of
+          customizable templates, empowering you to express your brand's voice and style through dynamic motion graphics
+          and kinetic typography.
         </Description>
         <CustomButtonGroup>
           <Button
@@ -140,7 +141,7 @@ const CustomOverTitle = styled(OverTitle)`
 `;
 
 const Heading = styled.h1`
-  font-size: 7rem;
+  font-size: 6rem;
   font-weight: bold;
   line-height: 1.1;
   margin-bottom: 4rem;

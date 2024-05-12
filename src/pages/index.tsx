@@ -1,5 +1,4 @@
 // import { InferGetStaticPropsType } from 'next';
-import Head from 'next/head';
 import styled from 'styled-components';
 import BasicSection from 'src/components/BasicSection'
 import Link from 'src/components/Link'
@@ -13,15 +12,19 @@ import Partners from 'src/views/HomePage/Partners';
 import ScrollableBlogPosts from 'src/views/HomePage/ScrollableBlogPosts';
 import Testimonials from 'src/views/HomePage/Testimonials';
 import {postarray} from '../posts/posts'
+import Head from 'next/head'
+
 export default function Homepage({ posts } : any) {
   return (
     <>
-      {/* <Head>
+      <Head>
+        <title>Design Your Own Animated Graphics & Text Effects </title>
         <meta
-          name="description"
-          content="Tempor nostrud velit fugiat nostrud duis incididunt Lorem deserunt est tempor aute dolor ad elit."
+          name='description'
+          content='Design your own engaging animated graphics and text effects effortlessly with the Shelltunes editor and extensive template collection.'
         />
-      </Head> */}
+        <meta name='og:title' content='Create your own Text Animations' />
+      </Head>
       <HomepageWrapper>
         <WhiteBackgroundContainer>
           <Hero />
@@ -34,8 +37,11 @@ export default function Homepage({ posts } : any) {
             reversed
           >
             <p>
-              Elevate your message with customizable text animations. Tailor the text to fit your brand’s voice and
-              style, ensuring your message not only reaches but resonates with your audience.
+              One of Shelltunes' standout features is the ability to create mesmerizing text animations with ease.
+              Simply enter your desired text, and our AI-powered platform will generate a range of captivating animation
+              options, allowing you to choose the perfect style to bring your message to life. From kinetic typography
+              to dynamic text effects, our free text animation tools ensure your content stands out and leaves a lasting
+              impression.
             </p>
           </BasicSection>
           <BasicSection
@@ -45,16 +51,18 @@ export default function Homepage({ posts } : any) {
             // reversed
           >
             <p>
-              Explore our extensive collection of animated design templates for every occasion and purpose. From vibrant
-              social media posts to engaging promotional videos, our templates are designed to make your content stand
-              out.
+              Shelltunes offers an extensive library of pre-designed templates and resources, catering to various design
+              needs and for every occasion and purpose. Whether you're looking to create a viral social media post, an
+              eye-catching advertisement, a stunning wedding invitation, or an engaging presentation, our platform has
+              you covered.Design your own engaging animated graphics and text effects effortlessly with the Shelltunes
+              editor and extensive template collection.
             </p>
             <ul>
-              <li>Social Media Posts</li>
-              <li>Advertisements</li>
-              <li>Promotions</li>
-              <li>Wedding Invitations</li>
-              <li>Animated Design templates</li>
+              <li>Social Media and Marketing Templates</li>
+              <li>Advertisements and Promotions</li>
+              <li>Presentation and Creative Templates</li>
+              <li>Wedding and Event Design Templates</li>
+              <li>YouTube Banners and Flyers</li>
               <li>Export in Multiple Formats</li>
             </ul>
           </BasicSection>
@@ -95,11 +103,13 @@ const WhiteBackgroundContainer = styled.div`
     margin-top: 15rem;
   }
 `;
+// export async function getStaticProps(context) {
+//     // const res = await axios.get(...);
 
-// export async function getStaticProps() {
-//   return {
-//     props: {
-//       posts: await getAllPosts(),
-//     },
-//   };
+//     return {
+//       // will be passed to the page component as props
+//       props: {
+//         posts: 'hello'
+//       }
+//     }
 // }

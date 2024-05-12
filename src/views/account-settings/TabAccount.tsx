@@ -96,15 +96,15 @@ const TabAccount = () => {
           Authorization: token
         }
       }
-      axios.get(`${baseURL}/api/chatbot-info`, config).then(response => {
-        console.log('res me ', response)
-        if (response) {
-          console.log('chatbot-info ', response)
-          setChatbot(response.data.Chatbot)
-        } else {
-          console.log('INVALID USER ')
-        }
-      })
+      // axios.get(`${baseURL}/api/chatbot-info`, config).then(response => {
+      //   console.log('res me ', response)
+      //   if (response) {
+      //     console.log('chatbot-info ', response)
+      //     setChatbot(response.data.Chatbot)
+      //   } else {
+      //     console.log('INVALID USER ')
+      //   }
+      // })
     }
   }
 
@@ -122,14 +122,14 @@ const TabAccount = () => {
     const body = {
       chatbot: chatbot
     }
-    axios.post(`${baseURL}/api/create-chatbot`, body, config).then(response => {
-      console.log('res me ', response)
-      if (response) {
-        console.log('UPDATED ', response)
-      } else {
-        console.log('INVALID USER ')
-      }
-    })
+    // axios.post(`${baseURL}/api/create-chatbot`, body, config).then(response => {
+    //   console.log('res me ', response)
+    //   if (response) {
+    //     console.log('UPDATED ', response)
+    //   } else {
+    //     console.log('INVALID USER ')
+    //   }
+    // })
   }
 
   return (

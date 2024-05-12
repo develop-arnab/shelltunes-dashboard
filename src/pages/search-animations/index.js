@@ -81,4 +81,14 @@ function App() {
   )
 }
 
+export async function getStaticProps({params = {}}) {
+    // const res = await axios.get(...);
+
+    return {
+      // will be passed to the page component as props
+      props: {
+        posts: 'hello'
+      }
+    }
+  }
 export default App

@@ -8,6 +8,7 @@ import OverTitle from './OverTitle';
 import RichText from './RichText';
 import Lottie from 'react-lottie'
 import * as animationData from '../../public/BIG_Color_Connected_Dynamic_Reveal_Ribbon_Grow_Shrink_Slanted_Stripe_Stylish_Slide_Text_Animation.json'
+import * as weddingTest from '../../public/wedding_test.json'
 export interface BasicSectionProps {
   imageUrl: string;
   title: string;
@@ -27,7 +28,7 @@ export default function BasicSection({ imageUrl, title, overTitle, reversed, chi
           //   loop={true}
           options={{
             renderer: 'html',
-            animationData: animationData,
+            animationData: reversed ? weddingTest : animationData,
             loop: true,
             autoplay: true,
             // path: file.url.split('?')[0]
@@ -39,7 +40,7 @@ export default function BasicSection({ imageUrl, title, overTitle, reversed, chi
           width={400}
         />
       </ImageContainer>
-      <ContentContainer>
+      <ContentContainer onClick={() => { console.log("first")}}>
         <CustomOverTitle>{overTitle}</CustomOverTitle>
         <Title>{title}</Title>
         <RichText>{children}</RichText>
@@ -48,7 +49,7 @@ export default function BasicSection({ imageUrl, title, overTitle, reversed, chi
   )
 }
 
-const Title = styled.h1`
+const Title = styled.h2`
   font-size: 5.2rem;
   font-weight: bold;
   line-height: 1.1;

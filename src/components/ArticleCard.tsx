@@ -1,4 +1,5 @@
 //@ts-nocheck
+import {useState} from 'react';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import styled from 'styled-components';
@@ -12,30 +13,37 @@ export interface ArticleCardProps {
   description: string;
 }
 
-export default function ArticleCard({ title, slug, imageUrl, description }: ArticleCardProps) {
+export default function ArticleCard({ title, slug, imageUrl,thumbnailUrl, description }: ArticleCardProps) {
+    const [imageBase64, setImageBase64] = useState('');
   return (
-    <NextLink href={'/#' + slug} passHref>
+    <NextLink href={'/search-animations/' + slug} passHref>
       <ArticleCardWrapper className='article-card-wrapper'>
         <HoverEffectContainer>
-          <ImageContainer>
-            {/* <NextImage src={imageUrl} layout="fill" objectFit="cover" alt={title} /> */}
-            {/* <video width='300' height='100' autoPlay={true} controls>
+          {/* <ImageContainer> */}
+          {/* <NextImage src={imageUrl} layout="fill" objectFit="cover" alt={title} /> */}
+          {/* <video width='300' height='100' autoPlay={true} controls>
               <source src={imageUrl} type='video/mp4' />
             </video> */}
-            <ReactPlayer
-              width='350px'
-              height='250px'
-              url={imageUrl}
-              controls={true}
-              autoPlay={true}
-              muted={true}
-              // light is usefull incase of dark mode
-              light={false}
-              // picture in picture
-              pip={true}
-            />
-            <source src={imageUrl} type='video/mp4' />
-          </ImageContainer>
+          <ReactPlayer
+            width='350px'
+            height='250px'
+            style={{ top: -26 }}
+            url={imageUrl}
+            // controls={true}
+            autoPlay={true}
+            playing
+            muted={true}
+            // light is usefull incase of dark mode
+            // light={true}
+            light={thumbnailUrl}
+            // picture in picture
+            // pip={true}
+          />
+          {/* <video width='350' height='250' style={{position:"absolute",top:"-26px"}} autoPlay={true}>
+              <source src={imageUrl} type='video/mp4' />
+            </video> */}
+          {/* <source src={imageUrl} type='video/mp4' /> */}
+          {/* </ImageContainer> */}
           <Content>
             <Title>{title}</Title>
             <Description>{description}</Description>
@@ -79,7 +87,7 @@ const ImageContainer = styled.div`
     display: block;
     content: '';
     width: 100%;
-    padding-top: calc((9 / 16) * 100%);
+    // padding-top: calc((9 / 16) * 100%);
   }
 
   & > div {
