@@ -1,17 +1,18 @@
 // ** React Imports
-import { useState, Fragment, ChangeEvent, MouseEvent, ReactNode } from 'react'
+import { ChangeEvent, MouseEvent, ReactNode, useState } from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
-
+import { useRouter } from 'next/router'
+import axios from 'axios'
 // ** MUI Components
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import Checkbox from '@mui/material/Checkbox'
 import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
 import InputLabel from '@mui/material/InputLabel'
+import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import CardContent from '@mui/material/CardContent'
 import FormControl from '@mui/material/FormControl'
@@ -55,32 +56,55 @@ const LinkStyled = styled('a')(({ theme }) => ({
 }))
 
 const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ theme }) => ({
-  marginTop: theme.spacing(1.5),
-  marginBottom: theme.spacing(4),
   '& .MuiFormControlLabel-label': {
     fontSize: '0.875rem',
     color: theme.palette.text.secondary
   }
 }))
 
-const RegisterPage = () => {
-  // ** States
+// const baseURL = "http://localhost:4000";
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+const LoginPage = () => {
+  // ** State
   const [values, setValues] = useState<State>({
     password: '',
     showPassword: false
   })
-
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   // ** Hook
   const theme = useTheme()
+  const router = useRouter()
 
   const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
     setValues({ ...values, [prop]: event.target.value })
   }
+
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
   }
+
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
+  }
+
+  const loginUser = () =>{
+    console.log("EMAIL ", email, "Password ", password) 
+    const body = {
+      username : email,
+      password : password
+    }
+    axios
+    .post(`${baseURL}/api/login`, body)
+    .then((response) => {
+      console.log("res me ", response);
+      if(response.data.accessToken) {
+        localStorage.setItem("accessToken", response.data.accessToken)
+          router.push('/')
+      } else {
+        console.log("INVALID USER ")
+      }
+    });
   }
 
   return (
@@ -104,19 +128,33 @@ const RegisterPage = () => {
           </Box>
           <Box sx={{ mb: 6 }}>
             <Typography variant='h5' sx={{ fontWeight: 600, marginBottom: 1.5 }}>
-              Creativity Starts Here 🚀
+              Welcome to {themeConfig.templateName}! 👋🏻
             </Typography>
-            <Typography variant='body2'>Make designing your ideas easy and fun!</Typography>
+            <Typography variant='body2'>Please sign-in to your account and start creating your designs.</Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth id='username' label='Username' sx={{ marginBottom: 4 }} />
-            <TextField fullWidth type='email' label='Email' sx={{ marginBottom: 4 }} />
-            <FormControl fullWidth>
-              <InputLabel htmlFor='auth-register-password'>Password</InputLabel>
+            <TextField
+              onChange={e => setEmail(e.target.value)}
+              autoFocus
+              fullWidth
+              id='email'
+              label='Email'
+              sx={{ marginBottom: 4 }}
+            />
+            <TextField
+              onChange={e => setPassword(e.target.value)}
+              autoFocus
+              fullWidth
+              id='password'
+              label='Password'
+              sx={{ marginBottom: 4 }}
+            />
+            {/* <FormControl fullWidth>
+              <InputLabel htmlFor='auth-login-password'>Password</InputLabel>
               <OutlinedInput
                 label='Password'
                 value={values.password}
-                id='auth-register-password'
+                id='auth-login-password'
                 onChange={handleChange('password')}
                 type={values.showPassword ? 'text' : 'password'}
                 endAdornment={
@@ -127,35 +165,30 @@ const RegisterPage = () => {
                       onMouseDown={handleMouseDownPassword}
                       aria-label='toggle password visibility'
                     >
-                      {values.showPassword ? <EyeOutline fontSize='small' /> : <EyeOffOutline fontSize='small' />}
+                      {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
                     </IconButton>
                   </InputAdornment>
                 }
               />
-            </FormControl>
-            <FormControlLabel
-              control={<Checkbox />}
-              label={
-                <Fragment>
-                  <span>I agree to </span>
-                  <Link href='/' passHref>
-                    <LinkStyled onClick={(e: MouseEvent<HTMLElement>) => e.preventDefault()}>
-                      privacy policy & terms
-                    </LinkStyled>
-                  </Link>
-                </Fragment>
-              }
-            />
-            <Button fullWidth size='large' type='submit' variant='contained' sx={{ marginBottom: 7 }}>
-              Sign up
+            </FormControl> */}
+            <Box
+              sx={{ mb: 4, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}
+            >
+              <FormControlLabel control={<Checkbox />} label='Remember Me' />
+              <Link passHref href='/'>
+                <LinkStyled onClick={e => e.preventDefault()}>Forgot Password?</LinkStyled>
+              </Link>
+            </Box>
+            <Button fullWidth size='large' variant='contained' sx={{ marginBottom: 7 }} onClick={() => loginUser()}>
+              Login
             </Button>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
               <Typography variant='body2' sx={{ marginRight: 2 }}>
-                Already have an account?
+                New on our platform?
               </Typography>
               <Typography variant='body2'>
-                <Link passHref href='/pages/login'>
-                  <LinkStyled>Sign in instead</LinkStyled>
+                <Link passHref href='/user/register'>
+                  <LinkStyled>Create an account</LinkStyled>
                 </Link>
               </Typography>
             </Box>
@@ -192,6 +225,6 @@ const RegisterPage = () => {
   )
 }
 
-RegisterPage.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
+LoginPage.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
 
-export default RegisterPage
+export default LoginPage

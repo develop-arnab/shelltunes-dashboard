@@ -57,7 +57,7 @@ export default function Hero() {
         <CustomButtonGroup>
           <Button
             onClick={() => {
-              window.open(`${process.env.NEXT_PUBLIC_BASE_URL}/studio`)
+              window.open(`${process.env.NEXT_PUBLIC_BASE_URL}/studio?token=${localStorage.getItem('accessToken')}`)
             }}
           >
             Start Designing <span>&rarr;</span>

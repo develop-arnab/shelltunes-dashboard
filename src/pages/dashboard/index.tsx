@@ -1,3 +1,4 @@
+//@ts-nocheck
 // ** MUI Imports
 import Grid from '@mui/material/Grid'
 import CardWithCollapse from 'src/views/cards/CardWithCollapse'
@@ -28,7 +29,7 @@ import { useState, useEffect } from 'react'
 import UserLayout from 'src/layouts/UserLayout'
 const Dashboard = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
-  const [savedProjects, setSavedProjects] = useState([])
+  const [savedProjects, setSavedProjects] = useState()
   const getSavedProject = async () => {
     const headers = {
       Authorization: localStorage.getItem('accessToken'),
@@ -46,7 +47,7 @@ const Dashboard = () => {
     }
   }
   useEffect(() => {
-    // getSavedProject()
+    getSavedProject()
   }, [])
   const handleClick = option => {
     const url = process.env.NEXT_PUBLIC_BASE_URL
@@ -82,59 +83,59 @@ const Dashboard = () => {
   }
   return (
     // <UserLayout>
-      <ApexChartWrapper>
-        <Grid container spacing={6}>
-          <Grid item xs={12} sx={{ paddingBottom: 4 }}>
-            <Typography variant='h5'>Create</Typography>
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <CardUser
-              cta={'Create'}
-              title={'Title Animations'}
-              description={'16:9'}
-              handleClick={() => handleClick('Title Animations')}
-              image={'/images/templates/meme_template.jpg'}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <CardUser
-              cta={'Create'}
-              title={'Social Media'}
-              description={'16:9'}
-              handleClick={() => handleClick('advertisement')}
-              image={'/images/templates/landscape.jpg'}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6} md={4}>
-            <CardUser
-              cta={'Create'}
-              title={'Presentation'}
-              description={'16:9'}
-              handleClick={() => handleClick('Presentation')}
-              image={'/images/templates/potrait.avif'}
-            />
-          </Grid>
+    <ApexChartWrapper>
+      <Grid container spacing={6}>
+        <Grid item xs={12} sx={{ paddingBottom: 4 }}>
+          <Typography variant='h5'>Create</Typography>
         </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <CardUser
+            cta={'Create'}
+            title={'Title Animations'}
+            description={'16:9'}
+            handleClick={() => handleClick('Title Animations')}
+            image={'/featured/cards/thumbs/dynamic_text_thumb.png'}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <CardUser
+            cta={'Create'}
+            title={'Social Media'}
+            description={'16:9'}
+            handleClick={() => handleClick('advertisement')}
+            image={'/featured/cards/thumbs/food_thumb.png'}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={4}>
+          <CardUser
+            cta={'Create'}
+            title={'Presentation'}
+            description={'16:9'}
+            handleClick={() => handleClick('Presentation')}
+            image={'/images/templates/potrait.avif'}
+          />
+        </Grid>
+      </Grid>
 
-        <Grid container spacing={6}>
-          <Grid item xs={12} sx={{ paddingBottom: 4 }}>
-            <Typography variant='h5'>Saved Projects</Typography>
-          </Grid>
-          {/* {savedProjects?.map(project => {
-          return (
-            <Grid item xs={12} sm={6} md={4}>
-              <CardUser
-                cta={'Resume'}
-                title={'Project'}
-                description={'16:9'}
-                handleClick={() => handleClick(project._id)}
-                image={project.thumbnail}
-              />
-            </Grid>
-          )
-        })} */}
+      <Grid container spacing={6}>
+        <Grid item xs={12} sx={{ paddingBottom: 4 }}>
+          <Typography variant='h5'>Saved Projects</Typography>
         </Grid>
-      </ApexChartWrapper>
+        {savedProjects && savedProjects?.message !== 'Invalid'
+          ? savedProjects?.map(project => (
+              <Grid item xs={12} sm={6} md={4} key={project._id}>
+                <CardUser
+                  cta={'Resume'}
+                  title={'Project'}
+                  description={'16:9'}
+                  handleClick={() => handleClick(project._id)}
+                  image={project.thumbnail}
+                />
+              </Grid>
+            ))
+          : null}
+      </Grid>
+    </ApexChartWrapper>
     // </UserLayout>
   )
 }
