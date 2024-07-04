@@ -1,18 +1,17 @@
 // ** React Imports
-import { ChangeEvent, MouseEvent, ReactNode, useState } from 'react'
+import { useState, Fragment, ChangeEvent, MouseEvent, ReactNode, useEffect } from 'react'
 
 // ** Next Imports
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-import axios from 'axios'
+
 // ** MUI Components
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import Checkbox from '@mui/material/Checkbox'
 import TextField from '@mui/material/TextField'
-import InputLabel from '@mui/material/InputLabel'
 import Typography from '@mui/material/Typography'
+import InputLabel from '@mui/material/InputLabel'
 import IconButton from '@mui/material/IconButton'
 import CardContent from '@mui/material/CardContent'
 import FormControl from '@mui/material/FormControl'
@@ -21,7 +20,8 @@ import { styled, useTheme } from '@mui/material/styles'
 import MuiCard, { CardProps } from '@mui/material/Card'
 import InputAdornment from '@mui/material/InputAdornment'
 import MuiFormControlLabel, { FormControlLabelProps } from '@mui/material/FormControlLabel'
-
+import axios from 'axios'
+import { useRouter } from 'next/router'
 // ** Icons Imports
 import Google from 'mdi-material-ui/Google'
 import Github from 'mdi-material-ui/Github'
@@ -56,56 +56,59 @@ const LinkStyled = styled('a')(({ theme }) => ({
 }))
 
 const FormControlLabel = styled(MuiFormControlLabel)<FormControlLabelProps>(({ theme }) => ({
+  marginTop: theme.spacing(1.5),
+  marginBottom: theme.spacing(4),
   '& .MuiFormControlLabel-label': {
     fontSize: '0.875rem',
     color: theme.palette.text.secondary
   }
 }))
 
-// const baseURL = "http://localhost:4000";
-const baseURL = process.env.NEXT_PUBLIC_AUTH_SERVICE
-
-const LoginPage = () => {
-  // ** State
+const VerifyCodePage = () => {
+  // ** States
   const [values, setValues] = useState<State>({
     password: '',
     showPassword: false
   })
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('')
+  const [code, setVerificationCode] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   // ** Hook
   const theme = useTheme()
   const router = useRouter()
+  console.log(router.query)
 
-  const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
-    setValues({ ...values, [prop]: event.target.value })
-  }
-
+  useEffect(() => {
+    if (router.query.username) {
+      setUsername(router.query.username as string)
+    }
+  }, [])
+  const baseURL = process.env.NEXT_PUBLIC_AUTH_SERVICE
+  // const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
+  //   setValues({ ...values, [prop]: event.target.value })
+  // }
   const handleClickShowPassword = () => {
     setValues({ ...values, showPassword: !values.showPassword })
   }
-
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
   }
+  const signUp = () => {
+    console.log('EMAIL ', username, 'Password ', code)
 
-  const loginUser = () =>{
-    console.log("EMAIL ", email, "Password ", password) 
     const body = {
-      username : email,
-      password : password
+      username: username,
+      token: code
     }
-    axios
-    .post(`${baseURL}/user/login`, body)
-    .then((response) => {
-      console.log('token ', response?.data?.accessToken?.jwtToken)
-      if(response?.data?.accessToken?.jwtToken) {
-        localStorage.setItem("accessToken", response?.data?.accessToken?.jwtToken)
-        router.push('/')
+    axios.post(`${baseURL}/user/verify-email`, body).then(response => {
+      console.log('res me ', response)
+      if (response.data == 'SUCCESS') {
+        router.push('/user/login')
       } else {
-        console.log("INVALID USER ")
+        console.log('INVALID USER ')
       }
-    });
+    })
   }
 
   return (
@@ -129,67 +132,43 @@ const LoginPage = () => {
           </Box>
           <Box sx={{ mb: 6 }}>
             <Typography variant='h5' sx={{ fontWeight: 600, marginBottom: 1.5 }}>
-              Welcome to {themeConfig.templateName}! 👋🏻
+              We have sent a verification code to your email 🚀
             </Typography>
-            <Typography variant='body2'>Please sign-in to your account and start creating your designs.</Typography>
+            <Typography variant='body2'>Enter the code we just emailed you</Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
             <TextField
-              onChange={e => setEmail(e.target.value)}
               autoFocus
               fullWidth
-              id='email'
-              label='Email'
+              value={username}
+              id='username'
+              label='username'
               sx={{ marginBottom: 4 }}
+              onChange={e => setUsername(e.target.value)}
             />
             <TextField
-              onChange={e => setPassword(e.target.value)}
-              autoFocus
               fullWidth
-              id='password'
-              label='Password'
+              label='Verify Code'
               sx={{ marginBottom: 4 }}
+              onChange={e => setVerificationCode(e.target.value)}
             />
-            {/* <FormControl fullWidth>
-              <InputLabel htmlFor='auth-login-password'>Password</InputLabel>
-              <OutlinedInput
-                label='Password'
-                value={values.password}
-                id='auth-login-password'
-                onChange={handleChange('password')}
-                type={values.showPassword ? 'text' : 'password'}
-                endAdornment={
-                  <InputAdornment position='end'>
-                    <IconButton
-                      edge='end'
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      aria-label='toggle password visibility'
-                    >
-                      {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-            </FormControl> */}
-            <Box
-              sx={{ mb: 4, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}
+            <Button
+              fullWidth
+              size='large'
+              type='submit'
+              variant='contained'
+              sx={{ marginBottom: 7 }}
+              onClick={() => signUp()}
             >
-              <FormControlLabel control={<Checkbox />} label='Remember Me' />
-              <Link passHref href='/'>
-                <LinkStyled onClick={e => e.preventDefault()}>Forgot Password?</LinkStyled>
-              </Link>
-            </Box>
-            <Button fullWidth size='large' variant='contained' sx={{ marginBottom: 7 }} onClick={() => loginUser()}>
-              Login
+              Verify
             </Button>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
               <Typography variant='body2' sx={{ marginRight: 2 }}>
-                New on our platform?
+                Already have an account?
               </Typography>
               <Typography variant='body2'>
-                <Link passHref href='/user/register'>
-                  <LinkStyled>Create an account</LinkStyled>
+                <Link passHref href='/user/login'>
+                  <LinkStyled>Sign in instead</LinkStyled>
                 </Link>
               </Typography>
             </Box>
@@ -226,6 +205,6 @@ const LoginPage = () => {
   )
 }
 
-LoginPage.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
+VerifyCodePage.getLayout = (page: ReactNode) => <BlankLayout>{page}</BlankLayout>
 
-export default LoginPage
+export default VerifyCodePage

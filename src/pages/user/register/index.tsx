@@ -76,7 +76,7 @@ const RegisterPage = () => {
   // ** Hook
   const theme = useTheme()
   const router = useRouter()
-  const baseURL = process.env.NEXT_PUBLIC_BASE_URL
+  const baseURL = process.env.NEXT_PUBLIC_AUTH_SERVICE
   // const handleChange = (prop: keyof State) => (event: ChangeEvent<HTMLInputElement>) => {
   //   setValues({ ...values, [prop]: event.target.value })
   // }
@@ -90,14 +90,15 @@ const RegisterPage = () => {
     console.log('EMAIL ', email, 'Password ', password)
 
         const body = {
-          username: email,
+          username: username,
+          email: email,
           password: password
         }
-        axios.post(`${baseURL}/api/register`, body).then(response => {
+        axios.post(`${baseURL}/user/register`, body).then(response => {
           console.log('res me ', response)
-          if (response.data.accessToken) {
-            localStorage.setItem('accessToken', response.data.accessToken)
-            router.push('/')
+          if (response?.data?.userSub) {
+            // localStorage.setItem('accessToken', response.data.accessToken)
+            router.push('/user/verifyCode?username=' + username)
           } else {
             console.log('INVALID USER ')
           }
