@@ -101,6 +101,8 @@ const LoginPage = () => {
       console.log('token ', response?.data?.accessToken?.jwtToken)
       if(response?.data?.accessToken?.jwtToken) {
         localStorage.setItem("accessToken", response?.data?.accessToken?.jwtToken)
+        localStorage.setItem('username', response?.data?.accessToken?.payload?.username)
+        localStorage.setItem('email', response?.data?.idToken?.payload?.email)
         router.push('/')
       } else {
         console.log("INVALID USER ")

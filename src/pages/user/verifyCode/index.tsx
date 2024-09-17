@@ -94,7 +94,7 @@ const VerifyCodePage = () => {
   const handleMouseDownPassword = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
   }
-  const signUp = () => {
+  const verifyCode = () => {
     console.log('EMAIL ', username, 'Password ', code)
 
     const body = {
@@ -158,7 +158,7 @@ const VerifyCodePage = () => {
               type='submit'
               variant='contained'
               sx={{ marginBottom: 7 }}
-              onClick={() => signUp()}
+              onClick={() => verifyCode()}
             >
               Verify
             </Button>
