@@ -65,7 +65,7 @@ export default function Hero() {
         Authorization: idToken,
         'Content-Type': 'application/json'
       }
-
+ 
       try {
         const response = await axios.post(BASE_URL + '/api/authenticate-sso',{}, { headers })
         const data = response?.data
