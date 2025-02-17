@@ -35,7 +35,7 @@ export default function Cta() {
             <NextLink href='#early-access' passHref>
               <Button
                 onClick={() => {
-                  window.open('https://create.shelltunes.com/studio')
+                  window.open('https://canvas.shelltunes.com/studio')
                 }}
               >
                 Start Creating Today <span>&rarr;</span>

@@ -35,7 +35,7 @@ function App() {
 
     let config = {
       method: 'post',
-      url: 'https://create.shelltunes.com/api/search',
+      url: 'https://canvas.shelltunes.com/api/search',
       headers: { 'Content-Type': 'application/json' },
       data: data
     }

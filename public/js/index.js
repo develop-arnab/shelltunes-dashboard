@@ -367,7 +367,7 @@ Promise.all([preloadImages('.deco__item'), preloadFonts('ejh4sem')]).then(() => 
 });
 
 function loadAnimationsIntoDivs() {
-  fetch("https://create.shelltunes.com/api/search", {
+  fetch("https://canvas.shelltunes.com/api/search", {
     method: "post",
     headers: {
       Accept: "application/json",
